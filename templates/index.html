@@ -6,50 +6,66 @@
   <title>AI 數學解題與教學輔助系統</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
+
 <body>
   <div class="container">
-    <header>
+    <header class="hero">
       <h1>AI 數學解題與教學輔助系統</h1>
-      <p>輸入數學題目，系統會提供步驟解釋與答案。</p>
+      <p>輸入數學題目，系統會依照題型與模式提供解題步驟、觀念說明與最終答案。</p>
     </header>
 
-    <section class="card">
-      <label for="topic">題型</label>
-      <select id="topic">
-        <option value="general">綜合</option>
-        <option value="algebra">代數</option>
-        <option value="calculus">微積分</option>
-        <option value="statistics">統計</option>
-      </select>
+    <main>
+      <section class="card">
+        <h2>數學解題</h2>
 
-      <label for="mode">模式</label>
-      <select id="mode">
-        <option value="beginner">Beginner Mode（詳細教學）</option>
-        <option value="exam">Exam Mode（精簡考試）</option>
-      </select>
+        <label for="topic">題型</label>
+        <select id="topic">
+          <option value="general">綜合</option>
+          <option value="algebra">代數</option>
+          <option value="calculus">微積分</option>
+          <option value="statistics">統計</option>
+        </select>
 
-      <label for="question">數學題目</label>
-      <textarea id="question" rows="8" placeholder="例如：求解方程式 x^2 - 5x + 6 = 0，並說明步驟"></textarea>
+        <label for="mode">模式</label>
+        <select id="mode">
+          <option value="beginner">Beginner Mode（詳細教學）</option>
+          <option value="exam">Exam Mode（精簡考試）</option>
+        </select>
 
-      <div class="actions">
-        <button id="solveBtn">開始解題</button>
-      </div>
-    </section>
+        <label for="question">數學題目</label>
+        <textarea
+          id="question"
+          rows="8"
+          placeholder="例如：求解方程式 x^2 - 5x + 6 = 0，並說明步驟"
+        ></textarea>
 
-    <section class="card">
-      <h2>解題結果</h2>
-      <pre id="result">尚未解題</pre>
-    </section>
+        <div class="actions">
+          <button id="solveBtn">開始解題</button>
+        </div>
+      </section>
 
-    <section class="card">
-      <h2>SymPy 驗證</h2>
-      <p>可輸入算式做化簡驗證，例如：2*x + 3*x</p>
-      <input id="verifyInput" type="text" placeholder="輸入算式" />
-      <div class="actions">
-        <button id="verifyBtn">驗證</button>
-      </div>
-      <pre id="verifyResult">尚未驗證</pre>
-    </section>
+      <section class="card">
+        <h2>解題結果</h2>
+        <pre id="result">尚未解題</pre>
+      </section>
+
+      <section class="card">
+        <h2>SymPy 算式驗證</h2>
+        <p class="hint">可輸入代數式做化簡驗證，例如：2*x + 3*x</p>
+
+        <input
+          id="verifyInput"
+          type="text"
+          placeholder="例如：2*x + 3*x"
+        />
+
+        <div class="actions">
+          <button id="verifyBtn">驗證</button>
+        </div>
+
+        <pre id="verifyResult">尚未驗證</pre>
+      </section>
+    </main>
   </div>
 
   <script src="{{ url_for('static', filename='main.js') }}"></script>
