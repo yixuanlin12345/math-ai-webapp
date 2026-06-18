@@ -53,7 +53,7 @@ def ask_openai(question, mode, topic):
     if not api_key:
         return (
             "目前尚未設定 OPENROUTER_API_KEY。\n\n"
-            "請先在環境變數中設定 OPENROUTER_API_KEY。\n\n"
+            "請先在 Render 的 Environment 中設定 OPENROUTER_API_KEY。\n\n"
             "最終答案：目前無法連接 AI。"
         )
 
@@ -66,8 +66,8 @@ def ask_openai(question, mode, topic):
             base_url="https://openrouter.ai/api/v1"
         )
 
-       response = client.chat.completions.create(
-          model="openrouter/auto",
+        response = client.chat.completions.create(
+            model="openrouter/auto",
             messages=[
                 {
                     "role": "system",
@@ -84,9 +84,7 @@ def ask_openai(question, mode, topic):
         return response.choices[0].message.content
 
     except Exception as e:
-        print("OpenRouter Error:", e)
         return f"錯誤：{str(e)}"
-
 
 
 def verify_expression(expr_str):
@@ -104,7 +102,10 @@ def verify_expression(expr_str):
         }
 
     except Exception as e:
-        return {"ok": False, "message": f"驗證失敗：{e}"}
+        return {
+            "ok": False,
+            "message": f"驗證失敗：{e}"
+        }
 
 
 @app.route("/")
