@@ -53,8 +53,8 @@ def ask_openai(question, mode, topic):
     if not api_key:
         return (
             "目前尚未設定 OPENROUTER_API_KEY。\n\n"
-            "請先在環境變數中設定 OPENROUTER_API_KEY 後再測試真實 AI 回答。\n\n"
-            "最終答案：目前無法連接 AI，因為尚未設定 API Key。"
+            "請先在環境變數中設定 OPENROUTER_API_KEY。\n\n"
+            "最終答案：目前無法連接 AI。"
         )
 
     if OpenAI is None:
@@ -67,10 +67,16 @@ def ask_openai(question, mode, topic):
         )
 
         response = client.chat.completions.create(
-            model="openrouter/auto",
+            model="deepseek/deepseek-chat-v3-0324:free",
             messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": build_user_prompt(question, mode, topic)}
+                {
+                    "role": "system",
+                    "content": SYSTEM_PROMPT
+                },
+                {
+                    "role": "user",
+                    "content": build_user_prompt(question, mode, topic)
+                }
             ],
             temperature=0.2
         )
@@ -78,6 +84,7 @@ def ask_openai(question, mode, topic):
         return response.choices[0].message.content
 
     except Exception as e:
+        print("OpenRouter Error:", e)
         return f"錯誤：{str(e)}"
 
 
