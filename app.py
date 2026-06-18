@@ -88,6 +88,7 @@ def ask_openai(question, mode, topic):
         return f"錯誤：{str(e)}"
 
 
+
 def verify_expression(expr_str):
     if sp is None:
         return {"ok": False, "message": "SymPy 未安裝，無法驗證。"}
