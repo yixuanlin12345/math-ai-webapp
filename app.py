@@ -66,8 +66,8 @@ def ask_openai(question, mode, topic):
             base_url="https://openrouter.ai/api/v1"
         )
 
-        response = client.chat.completions.create(
-            model="deepseek/deepseek-chat-v3-0324:free",
+       response = client.chat.completions.create(
+          model="openrouter/auto",
             messages=[
                 {
                     "role": "system",
